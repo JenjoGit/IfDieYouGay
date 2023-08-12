@@ -48,7 +48,7 @@ public class NewBehaviourScript : MonoBehaviour
     IEnumerator ExecuteAfterTime(float time, Collision2D col)
     {
         yield return new WaitForSeconds(time);
-                Destroy(col.gameObject);
+        Destroy(col.gameObject);
 
         // Code to execute after the delay
     }

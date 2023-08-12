@@ -2681,6 +2681,43 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &410552541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3953335454467547999, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
+  m_PrefabInstance: {fileID: 876349034403614091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &410552544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3910972479021256169, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
+  m_PrefabInstance: {fileID: 876349034403614091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &410552545
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410552541}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,10 +3275,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyShooter
       objectReference: {fileID: 0}
+    - target: {fileID: 4632422180577668552, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
+      propertyPath: bulletPos
+      value: 
+      objectReference: {fileID: 410552544}
+    - target: {fileID: 4929874935046211819, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929874935046211819, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1769189845
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7889355239540722910, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3953335454467547999, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 410552545}
   m_SourcePrefab: {fileID: 100100000, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
 --- !u!1001 &4525984935825801520
 PrefabInstance:
