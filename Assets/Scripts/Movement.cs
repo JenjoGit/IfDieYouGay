@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -7,7 +8,9 @@ public class Movement : MonoBehaviour
     public float movementSpeed = 5f;
     private Rigidbody2D rb;
     private Collider2D col;
-    public Vector2 movement;
+    public UnityEngine.Vector2 movement;
+
+    public UnityEngine.Vector2 mousPos; 
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,11 @@ public class Movement : MonoBehaviour
        // Input 
        movement.x = Input.GetAxisRaw("Horizontal");
        movement.y = Input.GetAxisRaw("Vertical");
+       mousPos = (UnityEngine.Vector2) Input.mousePosition;
+       if (Input.GetKeyDown(KeyCode.LeftShift))
+       {
+            MouseDash();
+       }
     }
 
     //Called  50/sec by Default not tied to fps = good
@@ -32,5 +40,10 @@ public class Movement : MonoBehaviour
         {
             rb.MovePosition(rb.position + movementSpeed * Time.fixedDeltaTime * movement);
         }
+    }
+
+    void MouseDash(){
+        UnityEngine.Vector2 direction = (UnityEngine.Vector2) Input.mousePosition - rb.position;
+        rb.AddForce(direction);
     }
 }
