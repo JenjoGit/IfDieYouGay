@@ -8,13 +8,14 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D col;
 
+    public float diff;
+
     public float movementSpeed = 5f;
     public UnityEngine.Vector2 movement;
 
     private bool canDash = true;
     private bool isDashing;
     public float dashRange = 5f;
-    private float dashingPower = 24f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
@@ -36,6 +37,7 @@ public class Movement : MonoBehaviour
     {
         mousePositionScreen = Input.mousePosition;
         mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
+        diff = (mousePositionWorld - rb.position).magnitude;
         
         if(isDashing)
         {
@@ -70,16 +72,21 @@ public class Movement : MonoBehaviour
 
     private IEnumerator MouseDash()
     {   
-        //UnityEngine.Vector2 staticMousePositionWorld = mousePositionWorld;
-        //UnityEngine.Vector2 staticDirection =  staticMousePositionWorld - rb.position;
+        UnityEngine.Vector2 staticMousePositionWorld = mousePositionWorld;
+        UnityEngine.Vector2 staticDirection =  staticMousePositionWorld - rb.position;
         
         canDash = false;
         isDashing = true;
-        //rb.velocity = new UnityEngine.Vector2(transform.localScale.x * dashingPower, transform.localScale.y * dashingPower);
-        //rb.AddForce(staticDirection * dashingPower);
-        //UnityEngine.Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //mousePos.z = 0f;
-        rb.velocity = new UnityEngine.Vector2(transform.localScale.x * dashingPower , transform.localScale.y * dashingPower );
+
+        if (dashRange >= staticDirection.magnitude)
+        {
+            rb.velocity = staticDirection / dashingTime;
+        }
+        else
+        {
+            rb.velocity = staticDirection.normalized * dashRange / dashingTime;
+        }
+        
 
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
@@ -87,13 +94,5 @@ public class Movement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
-    }
-
-    void MouseDdash()
-    {   
-        //rb.position = rb.position + direction;
-         
-       // rb.AddForce(staticDirection * dashSpeed);
-
     }
 }
