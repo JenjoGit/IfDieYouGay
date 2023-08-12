@@ -23,12 +23,12 @@ public class Movement : MonoBehaviour
     // Update is called once per frame Dependent on Framerate = Bad 
     void Update()
     {
-       // Input 
-       movement.x = Input.GetAxisRaw("Horizontal");
-       movement.y = Input.GetAxisRaw("Vertical");
+        // Input
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-       mousePositionScreen = Input.mousePosition;
-       mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
+        mousePositionScreen = Input.mousePosition;
+        mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
 
        if (Input.GetKeyDown(KeyCode.LeftShift))
        {
@@ -49,6 +49,6 @@ public class Movement : MonoBehaviour
     void MouseDash()
     { 
         UnityEngine.Vector2 direction =  mousePositionWorld - rb.position;
-        rb.position = direction;
+        rb.position = rb.position + direction;
     }
 }
