@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
         rb = this.GetComponent<Rigidbody2D>();
+
     }
     // Update is called once per frame Dependent on Framerate = Bad 
     void Update()
