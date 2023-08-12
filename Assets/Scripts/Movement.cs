@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float movementSpeed = 5f;
-
     private Rigidbody2D rb;
     private Collider2D col;
+
+    public float movementSpeed = 5f;
     public UnityEngine.Vector2 movement;
 
     private bool canDash = true;
@@ -37,6 +37,11 @@ public class Movement : MonoBehaviour
         mousePositionScreen = Input.mousePosition;
         mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
         
+        if(isDashing)
+        {
+            return;
+        }
+        
 
         // Input
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -50,41 +55,37 @@ public class Movement : MonoBehaviour
 
     //Called  50/sec by Default not tied to fps = good
     void FixedUpdate()
-    {
+    {   
+        if(isDashing)
+        {
+            return;
+        }
 
         // Movement ermöglicht solange wie die Kollisionen aktiv sind
         if(col.enabled)
         {
-            rb.MovePosition(rb.position + movementSpeed * Time.fixedDeltaTime * movement);
+            rb.velocity = new UnityEngine.Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
         }
     }
 
     private IEnumerator MouseDash()
     {   
-        UnityEngine.Vector2 staticMousePositionWorld = mousePositionWorld;
-        UnityEngine.Vector2 staticDirection =  staticMousePositionWorld - rb.position;
+        //UnityEngine.Vector2 staticMousePositionWorld = mousePositionWorld;
+        //UnityEngine.Vector2 staticDirection =  staticMousePositionWorld - rb.position;
         
         canDash = false;
         isDashing = true;
         //rb.velocity = new UnityEngine.Vector2(transform.localScale.x * dashingPower, transform.localScale.y * dashingPower);
         //rb.AddForce(staticDirection * dashingPower);
-        
-        if (dashRange >= staticDirection.sqrMagnitude)
-        {
-            rb.position = staticMousePositionWorld;
-        } 
-        else
-        {
-            rb.position += staticDirection.normalized * dashRange;
-        }
-        Debug.Log("dashed");
+        //UnityEngine.Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //mousePos.z = 0f;
+        rb.velocity = new UnityEngine.Vector2(transform.localScale.x * dashingPower , transform.localScale.y * dashingPower );
+
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
-        Debug.Log("dashStoppt");
         tr.emitting = false;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
-        Debug.Log("dashCooldownVorbei");
         canDash = true;
     }
 
