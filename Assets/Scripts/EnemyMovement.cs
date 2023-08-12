@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D enemy_rb;
     Transform target;
     Vector2 moveDirection;
+    [SerializeField] Health health;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -19,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindWithTag("Player").transform;
+        target = GameObject.Find("Player").transform;
     }
 
 /// <summary>
@@ -35,12 +36,30 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target)
+
+        if (target)
         {
             Vector3 direction = (target.position - transform.position).normalized;
             float angle  = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             enemy_rb.rotation = angle;
             moveDirection = direction;
         }
+    }
+    /// <summary>
+    /// OnCollisionEnter is called when this collider/rigidbody has begun
+    /// touching another rigidbody/collider.
+    /// </summary>
+    /// <param name="other">The Collision data associated with this collision.</param>
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Player")
+        {
+            health.takeDamage(2);
+            if(health.currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+        
     }
 }

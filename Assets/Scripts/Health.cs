@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
             currentHealth = maxHealth;
     }
 
-    void takeDamage(float damage)
+    public void takeDamage(float damage)
     {
         currentHealth -= damage - (damage * armor /100);
     }
