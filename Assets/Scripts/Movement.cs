@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
 
     private bool canDash = true;
     private bool isDashing;
+    public float dashRange = 5f;
     private float dashingPower = 24f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
@@ -62,11 +63,20 @@ public class Movement : MonoBehaviour
     {   
         UnityEngine.Vector2 staticMousePositionWorld = mousePositionWorld;
         UnityEngine.Vector2 staticDirection =  staticMousePositionWorld - rb.position;
+        
         canDash = false;
         isDashing = true;
         //rb.velocity = new UnityEngine.Vector2(transform.localScale.x * dashingPower, transform.localScale.y * dashingPower);
         //rb.AddForce(staticDirection * dashingPower);
-        rb.position = staticMousePositionWorld;
+        
+        if (dashRange >= staticDirection.sqrMagnitude)
+        {
+            rb.position = staticMousePositionWorld;
+        } 
+        else
+        {
+            rb.position += staticDirection.normalized * dashRange;
+        }
         Debug.Log("dashed");
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
