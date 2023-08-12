@@ -23,14 +23,14 @@ public class Health : MonoBehaviour
     }
     void FixedUpdate() 
     {
-        if (currentHealth < maxHealth) {
+        if (currentHealth < maxHealth)
             currentHealth += baseRegen;
-        }
+        else if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
     }
 
     void takeDamage(float damage)
     {
-        currentHealth -= damage * armor /100; // hallo
-    
+        currentHealth -= damage - (damage * armor /100);
     }
 }
