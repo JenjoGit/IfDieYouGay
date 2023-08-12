@@ -15,7 +15,12 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Ouch");
+            Time.timeScale = 1;
+            health.currentHealth = health.maxHealth;
+        }
     }
     /// <summary>
     /// Sent when an incoming collider makes contact with this object's
@@ -24,18 +29,14 @@ public class NewBehaviourScript : MonoBehaviour
     /// <param name="other">The Collision2D data associated with this collision.</param>
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Enemy")
+        if(col.gameObject.CompareTag("Enemy"))
         {
+
             health.takeDamage(damage);
             if(health.currentHealth <= 0)
             {       
                 
                 Time.timeScale = 0;
-                if(Input.GetKeyDown(KeyCode.Escape))
-                {
-                    Time.timeScale = 1;
-                    health.currentHealth = health.maxHealth;
-                }
             }
         }
     }
