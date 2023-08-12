@@ -8,9 +8,10 @@ public class Movement : MonoBehaviour
     public float movementSpeed = 5f;
     private Rigidbody2D rb;
     private Collider2D col;
-    public UnityEngine.Vector2 movement;
+    public UnityEngine.Vector2 movement;  
 
-    public UnityEngine.Vector2 mousPos; 
+    public UnityEngine.Vector2 mousePositionScreen;
+    public UnityEngine.Vector2 mousePositionWorld;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,10 @@ public class Movement : MonoBehaviour
        // Input 
        movement.x = Input.GetAxisRaw("Horizontal");
        movement.y = Input.GetAxisRaw("Vertical");
-       mousPos = (UnityEngine.Vector2) Input.mousePosition;
+
+       mousePositionScreen = Input.mousePosition;
+       mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
+
        if (Input.GetKeyDown(KeyCode.LeftShift))
        {
             MouseDash();
@@ -42,8 +46,9 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void MouseDash(){
-        UnityEngine.Vector2 direction = (UnityEngine.Vector2) Input.mousePosition - rb.position;
-        rb.AddForce(direction);
+    void MouseDash()
+    { 
+        UnityEngine.Vector2 direction =  mousePositionWorld - rb.position;
+        rb.position = direction;
     }
 }
