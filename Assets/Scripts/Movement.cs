@@ -30,7 +30,7 @@ public class Movement : MonoBehaviour
         // Movement ermöglicht solange wie die Kollisionen aktiv sind
         if(col.enabled)
         {
-            rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + movementSpeed * Time.fixedDeltaTime * movement);
         }
     }
 }
