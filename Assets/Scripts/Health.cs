@@ -30,6 +30,7 @@ public class Health : MonoBehaviour
 
     void takeDamage(float damage)
     {
-        currentHealth -= damage * armor /100;
+        currentHealth -= damage * armor /100; // hallo
+    
     }
 }
