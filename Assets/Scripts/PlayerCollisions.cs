@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,6 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Ouch");
             Time.timeScale = 1;
             health.currentHealth = health.maxHealth;
         }
@@ -31,13 +31,25 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Enemy"))
         {
-
             health.takeDamage(damage);
+            
             if(health.currentHealth <= 0)
             {       
                 
                 Time.timeScale = 0;
             }
         }
+        if(col.gameObject.CompareTag("Bullet"))
+        {
+            StartCoroutine(ExecuteAfterTime(0.1f, col));
+        }
+
+    }
+    IEnumerator ExecuteAfterTime(float time, Collision2D col)
+    {
+        yield return new WaitForSeconds(time);
+                Destroy(col.gameObject);
+
+        // Code to execute after the delay
     }
 }
