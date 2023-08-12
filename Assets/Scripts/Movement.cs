@@ -87,9 +87,11 @@ public class Movement : MonoBehaviour
             rb.velocity = staticDirection.normalized * dashRange / dashingTime;
         }
         
-
+        float originalRadius =  rb.GetComponent<CircleCollider2D>().radius;
+        rb.GetComponent<CircleCollider2D>().radius = 0; 
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
+        rb.GetComponent<CircleCollider2D>().radius = originalRadius;
         tr.emitting = false;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
