@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField] Health health;
     [SerializeField] private float damage = 10;
+    [SerializeField] private Slider healthbar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,9 @@ public class NewBehaviourScript : MonoBehaviour
             Time.timeScale = 1;
             health.currentHealth = health.maxHealth;
         }
+        Debug.Log(health.currentHealth / health.maxHealth * 100f);
+        healthbar.value = health.currentHealth / health.maxHealth * 100f;
+
     }
     /// <summary>
     /// Sent when an incoming collider makes contact with this object's

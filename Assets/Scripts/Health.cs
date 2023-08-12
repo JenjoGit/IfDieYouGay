@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Health : MonoBehaviour
 {
     public float maxHealth = 100.0f;
-    public float currentHealth; 
+    public float currentHealth;
 
     public float baseRegen = 1.0f;
     public float armor = 0;
@@ -24,7 +23,6 @@ public class Health : MonoBehaviour
             currentHealth += baseRegen * Time.deltaTime;
         else if (currentHealth > maxHealth)
             currentHealth = maxHealth;
-
     }
     void FixedUpdate() 
     {

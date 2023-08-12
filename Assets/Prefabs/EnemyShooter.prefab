@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3910972479021256169}
   - component: {fileID: 4929874935046211819}
   - component: {fileID: 4632422180577668552}
+  - component: {fileID: 7600878632182509385}
   m_Layer: 0
   m_Name: EnemyShooter
   m_TagString: Enemy
@@ -100,3 +101,15 @@ MonoBehaviour:
   bullet: {fileID: 5706176958902994732, guid: 2159c91ca6054c044abf83f1d8929eee, type: 3}
   bulletPos: {fileID: 3910972479021256169}
   timer: 2
+--- !u!114 &7600878632182509385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953335454467547999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d57fef0b9f6de646a712b77ded69060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
