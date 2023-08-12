@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Health : MonoBehaviour
 {
     public float maxHealth = 100.0f;
     public float currentHealth; 
 
-    public float baseRegen = 0.5f;
+    public float baseRegen = 1.0f;
     public float armor = 0;
 
     // Start is called before the first frame update
@@ -19,14 +20,14 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentHealth < maxHealth)
+            currentHealth += baseRegen * Time.deltaTime;
+        else if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
 
     }
     void FixedUpdate() 
     {
-        if (currentHealth < maxHealth)
-            currentHealth += baseRegen;
-        else if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
     }
 
     public void takeDamage(float damage)
