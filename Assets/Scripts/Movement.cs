@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Movement : MonoBehaviour
 {
@@ -29,7 +31,6 @@ public class Movement : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
         rb = this.GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame Dependent on Framerate = Bad 
@@ -78,7 +79,7 @@ public class Movement : MonoBehaviour
     //  Summary:
     //      Dashes towards the Mouse position
     //      - has max. dashrange, but dashes onto position if close enough
-        private IEnumerator MouseDash()
+    private IEnumerator MouseDash()
     {   
         UnityEngine.Vector2 staticDirection =  mousePositionWorld - rb.position;
         
@@ -120,12 +121,12 @@ public class Movement : MonoBehaviour
 
         rb.velocity = movement.normalized * dashRange / dashingTime;
         float originalRadius =  rb.GetComponent<CircleCollider2D>().radius;
-        rb.GetComponent<CircleCollider2D>().radius = 0; 
+        rb.GetComponent<CircleCollider2D>().enabled = false;
         tr.emitting = true;
 
         yield return new WaitForSeconds(dashingTime);
 
-        rb.GetComponent<CircleCollider2D>().radius = originalRadius;
+        rb.GetComponent<CircleCollider2D>().enabled = true;
         tr.emitting = false;
         isDashing = false;
 
