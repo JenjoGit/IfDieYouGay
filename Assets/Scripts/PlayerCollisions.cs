@@ -25,7 +25,6 @@ public class NewBehaviourScript : MonoBehaviour
             Time.timeScale = 1;
             health.currentHealth = health.maxHealth;
         }
-        Debug.Log(health.currentHealth / health.maxHealth * 100f);
         healthbar.value = health.currentHealth / health.maxHealth * 100f;
 
     }
