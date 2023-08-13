@@ -53,6 +53,10 @@ public class Movement : MonoBehaviour
        {
             StartCoroutine(MouseDash());
        }
+       if (Input.GetKeyDown(KeyCode.LeftControl) && canDash)
+       {
+            StartCoroutine(MoveDash());
+       }
     }
 
     //Called  50/sec by Default not tied to fps = good
@@ -70,10 +74,13 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private IEnumerator MouseDash()
+    //
+    //  Summary:
+    //      Dashes towards the Mouse position
+    //      - has max. dashrange, but dashes onto position if close enough
+        private IEnumerator MouseDash()
     {   
-        UnityEngine.Vector2 staticMousePositionWorld = mousePositionWorld;
-        UnityEngine.Vector2 staticDirection =  staticMousePositionWorld - rb.position;
+        UnityEngine.Vector2 staticDirection =  mousePositionWorld - rb.position;
         
         canDash = false;
         isDashing = true;
@@ -90,11 +97,40 @@ public class Movement : MonoBehaviour
         float originalRadius =  rb.GetComponent<CircleCollider2D>().radius;
         rb.GetComponent<CircleCollider2D>().radius = 0; 
         tr.emitting = true;
+
         yield return new WaitForSeconds(dashingTime);
+
         rb.GetComponent<CircleCollider2D>().radius = originalRadius;
         tr.emitting = false;
         isDashing = false;
+        
         yield return new WaitForSeconds(dashingCooldown);
+
+        canDash = true;
+    }
+
+    //
+    //  Summary:
+    //      Dashes into the current movedirection
+    //      - allways dashes max. dashrange
+    private IEnumerator MoveDash()
+    {   
+        canDash = false;
+        isDashing = true;
+
+        rb.velocity = movement.normalized * dashRange / dashingTime;
+        float originalRadius =  rb.GetComponent<CircleCollider2D>().radius;
+        rb.GetComponent<CircleCollider2D>().radius = 0; 
+        tr.emitting = true;
+
+        yield return new WaitForSeconds(dashingTime);
+
+        rb.GetComponent<CircleCollider2D>().radius = originalRadius;
+        tr.emitting = false;
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashingCooldown);
+
         canDash = true;
     }
 }
