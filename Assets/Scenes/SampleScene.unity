@@ -3018,6 +3018,8 @@ MonoBehaviour:
   dashRange: 5
   mousePositionScreen: {x: 0, y: 0}
   mousePositionWorld: {x: 0, y: 0}
+  rb: {fileID: 727781891}
+  col: {fileID: 727781892}
   tr: {fileID: 727781898}
 --- !u!50 &727781891
 Rigidbody2D:
@@ -3142,7 +3144,7 @@ Transform:
   m_GameObject: {fileID: 727781889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.83, y: -1.85, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3918,12 +3920,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.362
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.984
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: m_LocalPosition.z

@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
     private PolygonCollider2D pC;
 
     private bool canAttack = true;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +20,24 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(Attack());
+            //StartCoroutine(Attack());
         }
     }
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        
+    }
+
 
     private IEnumerator Attack(UnityEngine.Vector2 direction)
     {
 
-
+        
         yield return new WaitForSeconds(0.1f);
 
 

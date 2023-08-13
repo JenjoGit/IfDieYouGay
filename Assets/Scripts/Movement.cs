@@ -7,8 +7,7 @@ using UnityEngine.UIElements;
 
 public class Movement : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private Collider2D col;
+    
 
     public float diff;
 
@@ -24,13 +23,14 @@ public class Movement : MonoBehaviour
     public UnityEngine.Vector2 mousePositionScreen;
     public UnityEngine.Vector2 mousePositionWorld;
 
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Collider2D col;
     [SerializeField] private TrailRenderer tr;
 
     // Start is called before the first frame update
     void Start()
     {
-        col = GetComponent<Collider2D>();
-        rb = this.GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame Dependent on Framerate = Bad 
