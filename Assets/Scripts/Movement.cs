@@ -7,9 +7,13 @@ using UnityEngine.UIElements;
 
 public class Movement : MonoBehaviour
 {
-    
+    public bool mouseEnabled;
 
+    public UnityEngine.Vector2 mousePositionScreen;
+    public UnityEngine.Vector2 mousePositionWorld;
     public float diff;
+    
+    public UnityEngine.Vector2 direction;
 
     public float movementSpeed = 5f;
     public UnityEngine.Vector2 movement;
@@ -20,8 +24,7 @@ public class Movement : MonoBehaviour
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
-    public UnityEngine.Vector2 mousePositionScreen;
-    public UnityEngine.Vector2 mousePositionWorld;
+    
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D col;
@@ -30,15 +33,20 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        mouseEnabled = true;
     }
 
     // Update is called once per frame Dependent on Framerate = Bad 
     void Update()
-    {
-        mousePositionScreen = Input.mousePosition;
-        mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
-        diff = (mousePositionWorld - rb.position).magnitude;
+    {   
+        if (mouseEnabled)
+        {
+            mousePositionScreen = Input.mousePosition;
+            mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
+            diff = (mousePositionWorld - rb.position).magnitude;
+            direction = (mousePositionWorld - rb.position).normalized;
+        }
+        
         
         if(isDashing)
         {
@@ -72,6 +80,7 @@ public class Movement : MonoBehaviour
         if(col.enabled)
         {
             rb.velocity = new UnityEngine.Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
+            
         }
     }
 

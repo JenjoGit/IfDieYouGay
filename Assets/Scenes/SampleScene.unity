@@ -3107,6 +3107,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3186,8 +3187,21 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 727781894}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cafca2c4af04494db64fceae06ef4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 727781889}
 --- !u!1 &727781889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,16 +3212,16 @@ GameObject:
   m_Component:
   - component: {fileID: 727781894}
   - component: {fileID: 727781893}
-  - component: {fileID: 727781892}
   - component: {fileID: 727781891}
+  - component: {fileID: 727781892}
+  - component: {fileID: 727781900}
+  - component: {fileID: 727781902}
+  - component: {fileID: 727781898}
   - component: {fileID: 727781890}
   - component: {fileID: 727781895}
   - component: {fileID: 727781896}
-  - component: {fileID: 727781898}
   - component: {fileID: 727781899}
-  - component: {fileID: 727781900}
   - component: {fileID: 727781901}
-  - component: {fileID: 727781902}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3227,12 +3241,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0540f0408c1d9c4093d1108ab172dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseEnabled: 0
+  mousePositionScreen: {x: 0, y: 0}
+  mousePositionWorld: {x: 0, y: 0}
   diff: 0
+  direction: {x: 0, y: 0}
   movementSpeed: 5
   movement: {x: 0, y: 0}
   dashRange: 5
-  mousePositionScreen: {x: 0, y: 0}
-  mousePositionWorld: {x: 0, y: 0}
   rb: {fileID: 727781891}
   col: {fileID: 727781892}
   tr: {fileID: 727781898}
@@ -3339,7 +3355,7 @@ SpriteRenderer:
   m_SortingLayerID: 1497342835
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f985bcd43184f249a00fc425c91db74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3363,7 +3379,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 519420032}
   - {fileID: 48311354}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4459,6 +4474,14 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5
       objectReference: {fileID: 0}
@@ -4511,6 +4534,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 519420032}
   - {fileID: 727781894}
   - {fileID: 1701001755}
   - {fileID: 4525984935825801520}
