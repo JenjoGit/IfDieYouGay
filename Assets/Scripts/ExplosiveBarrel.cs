@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExplosiveBarrel : MonoBehaviour
 {
+    // [SerializeField] private ExplosionRadius
     // Start is called before the first frame update
     void Start()
     {
