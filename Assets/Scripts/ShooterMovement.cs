@@ -10,6 +10,8 @@ public class ShooterMovement : MonoBehaviour
     Vector2 moveDirection;
     [SerializeField] Health health;
     public float maxDistance = 10f;
+    [SerializeField] private float explosionDamage = 30f;
+
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -64,6 +66,14 @@ public class ShooterMovement : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Explosion"))
+        {
+            Debug.Log("Damage Taken");
+            health.takeDamage(explosionDamage);
         }
     }
 }

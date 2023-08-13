@@ -33,9 +33,10 @@ public class ExplosiveBarrel : MonoBehaviour
     void Explode()
     {
         explosionCollider = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-
+        
         foreach(Collider2D col in explosionCollider)
         {
+            // col.gameObject.tag = "Explosion";
             Rigidbody2D colRigidbody = col.GetComponent<Rigidbody2D>();
             if(colRigidbody != null)
             {
