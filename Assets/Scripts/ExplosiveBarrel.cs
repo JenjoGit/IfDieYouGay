@@ -19,12 +19,16 @@ public class ExplosiveBarrel : MonoBehaviour
     /// Sent when another object enters a trigger collider attached to this
     /// object (2D physics only).
     /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
+    /// <param name="col">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            
+            Explode();
         }
+    }
+    void Explode()
+    {
+        
     }
 }
