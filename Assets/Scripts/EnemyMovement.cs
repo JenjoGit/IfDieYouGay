@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     Transform target;
     Vector2 moveDirection;
     [SerializeField] Health health;
+    [SerializeField] private float explosionDamage = 30f;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -44,6 +45,10 @@ public class EnemyMovement : MonoBehaviour
             enemy_rb.rotation = angle;
             moveDirection = direction;
         }
+        if(health.currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     /// <summary>
     /// OnCollisionEnter is called when this collider/rigidbody has begun
@@ -55,10 +60,11 @@ public class EnemyMovement : MonoBehaviour
         if(collision.gameObject.name == "Player")
         {
             health.takeDamage(2);
-            if(health.currentHealth <= 0)
-            {
-                Destroy(gameObject);
-            }
+            
+        }
+        if(collision.gameObject.CompareTag("Explosion"))
+        {
+            health.takeDamage(explosionDamage);
         }
         
     }
