@@ -64,6 +64,7 @@ public class EnemyMovement : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Explosion"))
         {
+            Debug.Log("Damage Taken");
             health.takeDamage(explosionDamage);
         }
         

@@ -50,6 +50,7 @@ public class ExplosiveBarrel : MonoBehaviour
             }
         }
     }
+    
     /// <summary>
     /// Callback to draw gizmos that are pickable and always drawn.
     /// </summary>
