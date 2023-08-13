@@ -4467,7 +4467,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1103405981005222034, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: explosionRadius
-      value: 3.45
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: 1103405981005222034, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: explosionForceMulti
@@ -4519,6 +4519,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214145698277656151, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214145698277656151, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214145698277656151, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214145698277656151, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
+      propertyPath: m_Direction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8133104665237827547, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
