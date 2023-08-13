@@ -62,12 +62,21 @@ public class EnemyMovement : MonoBehaviour
             health.takeDamage(2);
             
         }
+
+        
+    }
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    void OnTriggerEnter2D(Collider2D collision)
+    {
         if(collision.gameObject.CompareTag("Explosion"))
         {
             Debug.Log("Damage Taken");
             health.takeDamage(explosionDamage);
         }
-        
     }
     
 }

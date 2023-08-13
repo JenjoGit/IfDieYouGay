@@ -28,12 +28,10 @@ public class ExplosiveBarrel : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             Explode();
-            Debug.Log("Explode");
         }
     }
     void Explode()
     {
-        Debug.Log("Explode");
         explosionCollider = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         foreach(Collider2D col in explosionCollider)
