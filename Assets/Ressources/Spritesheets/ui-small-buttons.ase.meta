@@ -121,7 +121,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: ui-small-buttons
     originalName: 
-    pivot: {x: 0.943038, y: -0.39372823}
+    pivot: {x: 0.5, y: -0.0034843208}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -152,7 +152,7 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 1
-        y: 113
+        y: 1
         width: 158
         height: 287
       spriteId: 016665fe0d1bf2f4a885b410dd65f296
@@ -161,4 +161,4 @@ ScriptedImporter:
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 300, y: 400}
+  canvasSize: {x: 160, y: 288}
