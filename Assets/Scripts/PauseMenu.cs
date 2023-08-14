@@ -10,6 +10,10 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject healtBar;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        Time.timeScale = 1;
+    }
     void Start()
     {
         
