@@ -20,10 +20,10 @@ public class Movement : MonoBehaviour
     public UnityEngine.Vector2 movement;
 
     private bool canDash = true;
-    private bool isDashing;
-    public float dashRange = 5f;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    public bool isDashing;
+    [SerializeField] private float dashRange = 5f;
+    [SerializeField] private float dashingTime = 0.2f;
+    [SerializeField] private float dashingCooldown = 1f;
 
     
 
@@ -102,12 +102,11 @@ public class Movement : MonoBehaviour
         }
     }
 
-    //
-    //  Summary:
-    //      Dashes either towards Mousedirection,
-    //          - has MaxRange, can dash shorter
-    //      or in direction of movement
-    //          - allways MaxRange
+    /// <summary>
+    /// Dashes either towards Mousedirection,
+    ///          - has MaxRange, can dash shorter
+    ///      or in direction of movement
+    ///          - allways MaxRange
     private IEnumerator Dash(UnityEngine.Vector2 dir)
     {   
         canDash = false;

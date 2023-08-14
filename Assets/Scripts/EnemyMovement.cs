@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] float speed  = 3f; 
     Rigidbody2D enemy_rb;
+
     Transform target;
     Vector2 moveDirection;
+
+    [SerializeField] float speed  = 3f; 
     [SerializeField] Health health;
-    [SerializeField] private float explosionDamage = 30f;
+    [SerializeField] float damage = 10;
+
+    [SerializeField] AudioSource audioSource;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -55,24 +60,14 @@ public class EnemyMovement : MonoBehaviour
     {
         if(collision.gameObject.name == "Player")
         {
-            health.takeDamage(2);
-            
+            collision.gameObject.GetComponent<Health>().takeDamage(damage);
+            if(!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
 
         
-    }
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Explosion"))
-        {
-            Debug.Log("Damage Taken");
-            health.takeDamage(explosionDamage);
-        }
     }
     
 }

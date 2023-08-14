@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void die()
+    private void die()
     {
         if(this.gameObject.CompareTag("Player")) 
         {

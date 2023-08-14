@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ExplosiveBarrel : MonoBehaviour
 {
-    [SerializeField] private float explosionRadius = 0f;
     Collider2D[] explosionCollider = null;
+
+    [SerializeField] private float explosionRadius = 0f;
     [SerializeField] private float explosionForceMulti = 5;
+    [SerializeField] private float explosionDamage = 25;
+
+    [SerializeField] private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +23,7 @@ public class ExplosiveBarrel : MonoBehaviour
     {
         
     }
+
     /// <summary>
     /// Sent when another object enters a trigger collider attached to this
     /// object (2D physics only).
@@ -25,21 +31,42 @@ public class ExplosiveBarrel : MonoBehaviour
     /// <param name="col">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Player"))
+       GameObject other = col.gameObject;
+        if(other.CompareTag("Player") && col.Equals(other.GetComponent<CircleCollider2D>()) && other.GetComponent<Movement>().isDashing)
         {
-            Explode();
+            StartCoroutine(Explode());
         }
     }
-    void Explode()
+
+    //
+    // Summary:
+    //      Let the Barrel explode
+    //
+    public IEnumerator Explode()
     {
+        audioSource.Play();
+
         explosionCollider = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         
+        
+
         foreach(Collider2D col in explosionCollider)
-        {
-            // col.gameObject.tag = "Explosion";
-            Rigidbody2D colRigidbody = col.GetComponent<Rigidbody2D>();
+        {   
+            GameObject other = col.gameObject;
+            Rigidbody2D colRigidbody = other.GetComponent<Rigidbody2D>();
+
+            if (other.CompareTag("Player") && col.Equals(other.GetComponent<CircleCollider2D>())) 
+            {
+                col.GetComponent<Health>().takeDamage(explosionDamage); 
+            }
+            else if (other.CompareTag("Enemy"))
+            {
+                col.GetComponent<Health>().takeDamage(explosionDamage); 
+            }
+
             if(colRigidbody != null)
             {
+                Debug.Log(col);
                 Vector2 distanceVector = col.transform.position - transform.position;
                 if(distanceVector.magnitude > 0)
                 {
@@ -47,7 +74,18 @@ public class ExplosiveBarrel : MonoBehaviour
                     colRigidbody.AddForce(distanceVector.normalized * explosionForce);
                 }
             }
+            
+            //  else if (other.CompareTag("Explosion"))
+            //  {
+            //      col.gameObject.GetComponent<ExplosiveBarrel>().Explode();
+            //  }
+
+            
+            
+            
         }
+        yield return new WaitForSeconds(0.854f);
+        Destroy(gameObject);
     }
     
     /// <summary>

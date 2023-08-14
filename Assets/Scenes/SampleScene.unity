@@ -3459,7 +3459,6 @@ GameObject:
   - component: {fileID: 727781891}
   - component: {fileID: 727781892}
   - component: {fileID: 727781900}
-  - component: {fileID: 727781902}
   - component: {fileID: 727781898}
   - component: {fileID: 727781890}
   - component: {fileID: 727781895}
@@ -3495,7 +3494,10 @@ MonoBehaviour:
   angle: 0
   movementSpeed: 5
   movement: {x: 0, y: 0}
+  isDashing: 0
   dashRange: 5
+  dashingTime: 0.2
+  dashingCooldown: 1
   rb: {fileID: 727781891}
   col: {fileID: 727781892}
   tr: {fileID: 727781898}
@@ -3840,41 +3842,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 5
   playerKnockback: 5
---- !u!58 &727781902
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 727781889}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &727781903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3998,11 +3965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 727781895}
-  damage: 10
   healthbar: {fileID: 1568628502}
-  audioSource: {fileID: 727781905}
-  bulletHit: {fileID: 8300000, guid: 5c7c6a5b711f4c840b5940c91ec658d4, type: 3}
-  contactHit: {fileID: 8300000, guid: 7f6072b36347f7047bc3bacc7312ba5f, type: 3}
 --- !u!1 &782229201
 GameObject:
   m_ObjectHideFlags: 0
@@ -5247,11 +5210,11 @@ PrefabInstance:
       insertIndex: 2
       addedObject: {fileID: 410552545}
     - targetCorrespondingSourceObject: {fileID: 3953335454467547999, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 410552547}
+      insertIndex: 3
+      addedObject: {fileID: 410552548}
     - targetCorrespondingSourceObject: {fileID: 3953335454467547999, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 410552548}
+      addedObject: {fileID: 410552547}
   m_SourcePrefab: {fileID: 100100000, guid: 60a7f325ec2e17846a6366c94a967fdf, type: 3}
 --- !u!1001 &4525984935825801520
 PrefabInstance:
@@ -5324,7 +5287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1103405981005222034, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: explosionForceMulti
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3835545550718089893, guid: 0fb879512830dd84abcedcbae4985cc9, type: 3}
       propertyPath: m_LocalScale.x
