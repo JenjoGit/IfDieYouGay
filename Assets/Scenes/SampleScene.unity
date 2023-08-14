@@ -4282,7 +4282,7 @@ MonoBehaviour:
   fpsDisplay: {fileID: 1829733129}
   fpsText: {fileID: 705220605}
   btt: {fileID: 1641465502}
-  target: 30
+  target: 144
 --- !u!1 &782229201
 GameObject:
   m_ObjectHideFlags: 0
