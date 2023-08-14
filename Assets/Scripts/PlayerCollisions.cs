@@ -3,13 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerCollisions : MonoBehaviour
 {
     [SerializeField] Health health;
     [SerializeField] private float damage = 10;
     [SerializeField] private Slider healthbar;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip bulletHit;
+    [SerializeField] AudioClip contactHit;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +42,21 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Enemy"))
         {
+            if(!audioSource.isPlaying)
+            {
+                audioSource.clip = contactHit;
+                audioSource.Play();
+            }
             health.takeDamage(damage);
             
         }
         if(col.gameObject.CompareTag("Bullet"))
         {
+            if(!audioSource.isPlaying)
+            {
+                audioSource.clip = bulletHit;
+                audioSource.Play();
+            }
             StartCoroutine(ExecuteAfterTime(0.1f, col));
         }
 
