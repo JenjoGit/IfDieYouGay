@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject healtBar;
+    [SerializeField] GameObject settingPanel;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -22,27 +24,37 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(Input.GetKeyDown(KeyCode.Escape))
-       {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            PauseGame();
+    }
+    public void PauseGame()
+    {
         if(pausePanel.activeSelf == true)
         {
-            pausePanel.SetActive(false);
-            healtBar.SetActive(true);
-            Time.timeScale = 1;
+            ContinueGame(); 
         }
         else
         {
-            healtBar.SetActive(false);
-            pausePanel.SetActive(true);
             Time.timeScale = 0;
+            pausePanel.SetActive(true);
+            healtBar.SetActive(false);
         }
-       } 
     }
     public void ContinueGame()
     {
         pausePanel.SetActive(false);
         healtBar.SetActive(true);
         Time.timeScale = 1;   
+    }
+    public void OpenSettings()
+    {
+        pausePanel.SetActive(false);
+        settingPanel.SetActive(true);
+    }
+    public void QuitSettings()
+    {
+        pausePanel.SetActive(false);
+        settingPanel.SetActive(false);
     }
     public void QuitToMenu()
     {

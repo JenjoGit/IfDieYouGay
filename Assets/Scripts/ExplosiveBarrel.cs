@@ -35,6 +35,7 @@ public class ExplosiveBarrel : MonoBehaviour
         if(other.CompareTag("Player") && col.Equals(other.GetComponent<CircleCollider2D>()) && other.GetComponent<Movement>().isDashing)
         {
             StartCoroutine(Explode());
+            
         }
     }
 
