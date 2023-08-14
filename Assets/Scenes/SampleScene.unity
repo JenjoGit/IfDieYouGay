@@ -3246,6 +3246,7 @@ MonoBehaviour:
   mousePositionWorld: {x: 0, y: 0}
   diff: 0
   direction: {x: 0, y: 0}
+  angle: 0
   movementSpeed: 5
   movement: {x: 0, y: 0}
   dashRange: 5

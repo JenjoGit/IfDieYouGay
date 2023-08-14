@@ -12,8 +12,9 @@ public class Movement : MonoBehaviour
     public UnityEngine.Vector2 mousePositionScreen;
     public UnityEngine.Vector2 mousePositionWorld;
     public float diff;
-    
+
     public UnityEngine.Vector2 direction;
+    public double angle;
 
     public float movementSpeed = 5f;
     public UnityEngine.Vector2 movement;
@@ -44,10 +45,27 @@ public class Movement : MonoBehaviour
             mousePositionScreen = Input.mousePosition;
             mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
             diff = (mousePositionWorld - rb.position).magnitude;
-            direction = (mousePositionWorld - rb.position).normalized;
+            direction = (mousePositionWorld - rb.position);
+            angle = UnityEngine.Vector2.Angle(UnityEngine.Vector2.up, direction);
+                if (mousePositionWorld.x > rb.position.x)
+                {
+                    angle = -angle;
+                }  
         }
+        else
+        {
+            direction = rb.velocity;
+            angle = UnityEngine.Vector2.Angle(UnityEngine.Vector2.up, direction);
+            if (direction.x > 0)
+                {
+                    angle = -angle;
+                }
+        }
+
         
+        transform.eulerAngles = new UnityEngine.Vector3(0, 0, (float) angle);
         
+
         if(isDashing)
         {
             return;
@@ -60,11 +78,12 @@ public class Movement : MonoBehaviour
 
        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
        {
-            StartCoroutine(MouseDash());
+            StartCoroutine(Dash(direction));
        }
-       if (Input.GetKeyDown(KeyCode.LeftControl) && canDash)
+
+       if (Input.GetMouseButtonDown(3))
        {
-            StartCoroutine(MoveDash());
+            mouseEnabled = !mouseEnabled;
        }
     }
 
@@ -80,28 +99,27 @@ public class Movement : MonoBehaviour
         if(col.enabled)
         {
             rb.velocity = new UnityEngine.Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
-            
         }
     }
 
     //
     //  Summary:
-    //      Dashes towards the Mouse position
-    //      - has max. dashrange, but dashes onto position if close enough
-    private IEnumerator MouseDash()
+    //      Dashes either towards Mousedirection,
+    //          - has MaxRange, can dash shorter
+    //      or in direction of movement
+    //          - allways MaxRange
+    private IEnumerator Dash(UnityEngine.Vector2 dir)
     {   
-        UnityEngine.Vector2 staticDirection =  mousePositionWorld - rb.position;
-        
         canDash = false;
         isDashing = true;
 
-        if (dashRange >= staticDirection.magnitude)
+        if(mouseEnabled)
         {
-            rb.velocity = staticDirection / dashingTime;
+            rb.velocity = UnityEngine.Vector2.ClampMagnitude(dir, dashRange) / dashingTime;
         }
         else
         {
-            rb.velocity = staticDirection.normalized * dashRange / dashingTime;
+            rb.velocity = movement.normalized * dashRange / dashingTime;
         }
         
         float originalRadius =  rb.GetComponent<CircleCollider2D>().radius;
@@ -114,31 +132,6 @@ public class Movement : MonoBehaviour
         tr.emitting = false;
         isDashing = false;
         
-        yield return new WaitForSeconds(dashingCooldown);
-
-        canDash = true;
-    }
-
-    //
-    //  Summary:
-    //      Dashes into the current movedirection
-    //      - allways dashes max. dashrange
-    private IEnumerator MoveDash()
-    {   
-        canDash = false;
-        isDashing = true;
-
-        rb.velocity = movement.normalized * dashRange / dashingTime;
-        float originalRadius =  rb.GetComponent<CircleCollider2D>().radius;
-        rb.GetComponent<CircleCollider2D>().enabled = false;
-        tr.emitting = true;
-
-        yield return new WaitForSeconds(dashingTime);
-
-        rb.GetComponent<CircleCollider2D>().enabled = true;
-        tr.emitting = false;
-        isDashing = false;
-
         yield return new WaitForSeconds(dashingCooldown);
 
         canDash = true;
