@@ -39,11 +39,6 @@ public class NewBehaviourScript : MonoBehaviour
         {
             health.takeDamage(damage);
             
-            if(health.currentHealth <= 0)
-            {       
-                
-                Time.timeScale = 0;
-            }
         }
         if(col.gameObject.CompareTag("Bullet"))
         {
@@ -54,6 +49,7 @@ public class NewBehaviourScript : MonoBehaviour
     IEnumerator ExecuteAfterTime(float time, Collision2D col)
     {
         yield return new WaitForSeconds(time);
+        health.takeDamage(damage);
         Destroy(col.gameObject);
 
         // Code to execute after the delay

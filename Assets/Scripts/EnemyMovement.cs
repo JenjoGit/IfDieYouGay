@@ -45,10 +45,6 @@ public class EnemyMovement : MonoBehaviour
             enemy_rb.rotation = angle;
             moveDirection = direction;
         }
-        if(health.currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
     /// <summary>
     /// OnCollisionEnter is called when this collider/rigidbody has begun

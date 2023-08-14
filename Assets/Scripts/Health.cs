@@ -31,5 +31,22 @@ public class Health : MonoBehaviour
     public void takeDamage(float damage)
     {
         currentHealth -= damage - (damage * armor /100);
+
+        if(currentHealth <= 0)
+        {
+            die();
+        }
+    }
+
+    public void die()
+    {
+        if(this.gameObject.CompareTag("Player")) 
+        {
+             Time.timeScale = 0;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
