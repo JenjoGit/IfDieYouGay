@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1769189845
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -176,6 +176,8 @@ MonoBehaviour:
   bullet: {fileID: 5706176958902994732, guid: 2159c91ca6054c044abf83f1d8929eee, type: 3}
   bulletPos: {fileID: 3910972479021256169}
   damage: 5
+  attackSpeed: 2
+  bulletSpeed: 2.5
   timer: 2
 --- !u!114 &7600878632182509385
 MonoBehaviour:
@@ -190,9 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  health: {fileID: 4564183367594790356}
-  maxDistance: 10
-  explosionDamage: 30
+  minDistance: 10
 --- !u!114 &4564183367594790356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,3 +209,4 @@ MonoBehaviour:
   currentHealth: 0
   baseRegen: 0
   armor: 0
+  healthbar: {fileID: 0}

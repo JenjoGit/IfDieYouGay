@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Health : MonoBehaviour
 
     public float baseRegen = 1.0f;
     public float armor = 0;
+    
+    [SerializeField] private Slider healthbar;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,16 @@ public class Health : MonoBehaviour
             currentHealth += baseRegen * Time.deltaTime;
         else if (currentHealth > maxHealth)
             currentHealth = maxHealth;
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale = 1;
+            currentHealth = maxHealth;
+        }
+        if (gameObject.CompareTag("Player"))
+        {
+            healthbar.value = currentHealth / maxHealth * 100f;
+        }
     }
     void FixedUpdate() 
     {
