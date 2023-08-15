@@ -7,7 +7,7 @@ public class EnemyShooter : MonoBehaviour
     public GameObject bullet;
     public Transform bulletPos;
     
-    [SerializeField] public float damage = 5;
+    public float damage = 5;
 
     [SerializeField] private float timer;
     // Start is called before the first frame update

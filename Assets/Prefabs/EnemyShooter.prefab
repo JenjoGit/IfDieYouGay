@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5706176958902994732, guid: 2159c91ca6054c044abf83f1d8929eee, type: 3}
   bulletPos: {fileID: 3910972479021256169}
-  damage: 0
+  damage: 5
   timer: 2
 --- !u!114 &7600878632182509385
 MonoBehaviour:

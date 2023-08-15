@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        damage = 5;//parent.GetComponent<EnemyShooter>().damage;
+        damage = parent.GetComponent<EnemyShooter>().damage;
 
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
 
         if (other.CompareTag("Player") && col.Equals(other.GetComponent<CircleCollider2D>()))
         {
-            playSound();
+            PlaySound();
             col.gameObject.GetComponent<Health>().takeDamage(damage);
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
@@ -56,11 +56,11 @@ public class Bullet : MonoBehaviour
         }
         else if (other.CompareTag("Explosion"))
         {
-            col.gameObject.GetComponent<ExplosiveBarrel>().Explode();
+            col.gameObject.GetComponent<ExplosiveBarrel>().StartCoroutine(col.gameObject.GetComponent<ExplosiveBarrel>().Explode());
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
     }
-    void playSound()
+    void PlaySound()
     {
         if(!audioSource.isPlaying)
             {

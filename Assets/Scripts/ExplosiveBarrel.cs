@@ -80,10 +80,6 @@ public class ExplosiveBarrel : MonoBehaviour
             //  {
             //      col.gameObject.GetComponent<ExplosiveBarrel>().Explode();
             //  }
-
-            
-            
-            
         }
         yield return new WaitForSeconds(0.854f);
         Destroy(gameObject);
