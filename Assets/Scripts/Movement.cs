@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,15 +6,15 @@ public class Movement : MonoBehaviour
 {
     public bool mouseEnabled;
 
-    public UnityEngine.Vector2 mousePositionScreen;
-    public UnityEngine.Vector2 mousePositionWorld;
+    public Vector2 mousePositionScreen;
+    public Vector2 mousePositionWorld;
     public float diff;
 
-    public UnityEngine.Vector2 direction;
+    public Vector2 direction;
     public double angle;
 
     public float movementSpeed = 5f;
-    public UnityEngine.Vector2 movement;
+    public Vector2 movement;
 
     private bool canDash = true;
     public bool isDashing;
@@ -46,7 +43,7 @@ public class Movement : MonoBehaviour
             mousePositionWorld = Camera.main.ScreenToWorldPoint(mousePositionScreen);
             diff = (mousePositionWorld - rb.position).magnitude;
             direction = (mousePositionWorld - rb.position);
-            angle = UnityEngine.Vector2.Angle(UnityEngine.Vector2.up, direction);
+            angle = Vector2.Angle(Vector2.up, direction);
                 if (mousePositionWorld.x > rb.position.x)
                 {
                     angle = -angle;
@@ -55,7 +52,7 @@ public class Movement : MonoBehaviour
         else
         {
             direction = rb.velocity;
-            angle = UnityEngine.Vector2.Angle(UnityEngine.Vector2.up, direction);
+            angle = Vector2.Angle(Vector2.up, direction);
             if (direction.x > 0)
                 {
                     angle = -angle;
@@ -63,7 +60,7 @@ public class Movement : MonoBehaviour
         }
 
         
-        transform.eulerAngles = new UnityEngine.Vector3(0, 0, (float) angle);
+        transform.eulerAngles = new Vector3(0, 0, (float) angle);
         
 
         if(isDashing)
@@ -98,7 +95,7 @@ public class Movement : MonoBehaviour
         // Movement ermöglicht solange wie die Kollisionen aktiv sind
         if(col.enabled)
         {
-            rb.velocity = new UnityEngine.Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
+            rb.velocity = new Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
         }
     }
 
@@ -107,14 +104,14 @@ public class Movement : MonoBehaviour
     ///          - has MaxRange, can dash shorter
     ///      or in direction of movement
     ///          - allways MaxRange
-    private IEnumerator Dash(UnityEngine.Vector2 dir)
+    private IEnumerator Dash(Vector2 dir)
     {   
         canDash = false;
         isDashing = true;
 
         if(mouseEnabled)
         {
-            rb.velocity = UnityEngine.Vector2.ClampMagnitude(dir, dashRange) / dashingTime;
+            rb.velocity = Vector2.ClampMagnitude(dir, dashRange) / dashingTime;
         }
         else
         {
