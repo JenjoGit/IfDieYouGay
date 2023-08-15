@@ -5,12 +5,12 @@ using UnityEngine;
 public class ShooterMovement : MonoBehaviour
 {
     [SerializeField] float speed  = 3f; 
+    
     Rigidbody2D enemy_rb;
     Transform target;
     Vector2 moveDirection;
-    [SerializeField] Health health;
-    public float maxDistance = 10f;
-    [SerializeField] private float explosionDamage = 30f;
+
+    public float minDistance = 10f;
 
 
     /// <summary>
@@ -34,7 +34,7 @@ public class ShooterMovement : MonoBehaviour
         if(target)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, target.position);
-            if(distanceToPlayer > maxDistance)
+            if(distanceToPlayer > minDistance)
                 enemy_rb.velocity = speed * Time.deltaTime * new Vector2(moveDirection.x, moveDirection.y);
             else
                 enemy_rb.velocity = Vector2.zero;
@@ -50,30 +50,6 @@ public class ShooterMovement : MonoBehaviour
             float angle  = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             enemy_rb.rotation = angle;
             moveDirection = direction;
-        }
-    }
-    /// <summary>
-    /// OnCollisionEnter is called when this collider/rigidbody has begun
-    /// touching another rigidbody/collider.
-    /// </summary>
-    /// <param name="other">The Collision data associated with this collision.</param>
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.name == "Player")
-        {
-            health.takeDamage(2);
-            if(health.currentHealth <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Explosion"))
-        {
-            Debug.Log("Damage Taken");
-            health.takeDamage(explosionDamage);
         }
     }
 }

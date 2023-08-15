@@ -7,16 +7,18 @@ public class Bullet : MonoBehaviour
     public GameObject player;
     private Rigidbody2D rb;
 
-    [SerializeField] public GameObject parent;
+    [SerializeField] public GameObject parentObject;
     [SerializeField] private float damage;
-    [SerializeField] private float speed = 0f;
+    [SerializeField] private float speed;
 
     [SerializeField] AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {   
-        damage = parent.GetComponent<EnemyShooter>().damage;
+        parentObject = transform.parent.gameObject;
+        damage = parentObject.GetComponent<EnemyShooter>().damage;
+        speed = parentObject.GetComponent<EnemyShooter>().bulletSpeed;
 
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
@@ -49,14 +51,14 @@ public class Bullet : MonoBehaviour
             col.gameObject.GetComponent<Health>().takeDamage(damage);
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
-        else if (other.CompareTag("Enemy") && !other.Equals(parent))
+        else if (other.CompareTag("Enemy") && !other.Equals(parentObject))
         {
             col.gameObject.GetComponent<Health>().takeDamage(damage);
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
         else if (other.CompareTag("Explosion"))
         {
-            col.gameObject.GetComponent<ExplosiveBarrel>().StartCoroutine(col.gameObject.GetComponent<ExplosiveBarrel>().Explode());
+            col.gameObject.GetComponent<ExplosiveBarrel>().Explode();
             StartCoroutine(ExecuteAfterTime(0.1f));
         }
     }

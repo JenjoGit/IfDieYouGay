@@ -14526,6 +14526,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 5
   playerKnockback: 5
+  attackTime: 0.1
+  attackCooldown: 1
 --- !u!114 &727781903
 MonoBehaviour:
   m_ObjectHideFlags: 0

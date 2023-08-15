@@ -34,7 +34,7 @@ public class ExplosiveBarrel : MonoBehaviour
        GameObject other = col.gameObject;
         if(other.CompareTag("Player") && col.Equals(other.GetComponent<CircleCollider2D>()) && other.GetComponent<Movement>().isDashing)
         {
-            StartCoroutine(Explode());
+            Explode();
             
         }
     }
@@ -43,7 +43,7 @@ public class ExplosiveBarrel : MonoBehaviour
     // Summary:
     //      Let the Barrel explode
     //
-    public IEnumerator Explode()
+    public void Explode()
     {
         audioSource.Play();
 
@@ -81,8 +81,7 @@ public class ExplosiveBarrel : MonoBehaviour
             //      col.gameObject.GetComponent<ExplosiveBarrel>().Explode();
             //  }
         }
-        yield return new WaitForSeconds(0.854f);
-        Destroy(gameObject);
+        Destroy(gameObject, 0.854f);
     }
     
     /// <summary>

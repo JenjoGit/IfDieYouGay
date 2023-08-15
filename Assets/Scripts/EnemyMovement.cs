@@ -11,7 +11,6 @@ public class EnemyMovement : MonoBehaviour
     Vector2 moveDirection;
 
     [SerializeField] float speed  = 3f; 
-    [SerializeField] Health health;
     [SerializeField] float damage = 10;
 
     [SerializeField] AudioSource audioSource;

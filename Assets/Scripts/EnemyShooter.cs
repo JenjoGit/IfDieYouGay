@@ -8,8 +8,11 @@ public class EnemyShooter : MonoBehaviour
     public Transform bulletPos;
     
     public float damage = 5;
+    public float attackSpeed = 2;
+    public float bulletSpeed = 2.5f;
 
     [SerializeField] private float timer;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,7 @@ public class EnemyShooter : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer > 1)
+        if(timer > (1 / attackSpeed))
         {
             timer = 0;
             shoot();
@@ -28,7 +31,6 @@ public class EnemyShooter : MonoBehaviour
     }
     void shoot()
     {
-        Instantiate(bullet, bulletPos.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().parent = gameObject;
+        Instantiate(bullet, bulletPos.position, Quaternion.identity, transform);
     }
 }

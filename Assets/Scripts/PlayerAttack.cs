@@ -12,8 +12,8 @@ public class PlayerAttack : MonoBehaviour
 
     private bool canAttack = true;
     private bool isAttacking;
-    private float attackTime = 0.1f;
-    private float attackCooldown = 1f;
+    [SerializeField] private float attackTime = 0.1f;
+    [SerializeField] private float attackCooldown = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,16 +35,27 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D col)
-    {
-        if(col.gameObject.CompareTag("Enemy") && isAttacking)
+    {   
+        GameObject other = col.gameObject;
+        
+        Debug.Log("should Attack");
+        if(other.CompareTag("Enemy") && isAttacking)
         {
-            // col.gameObject.GetComponent<Health>().takeDamage(playerDamage);
-            
-            //col.gameObject.GetComponent<Rigidbody2D>().
-
+            Debug.Log("is Attacking");
+            Rigidbody2D colRigidbody = other.GetComponent<Rigidbody2D>();
+            Vector2 direction = col.transform.position - transform.position;
+                if(direction.magnitude > 0)
+                {
+                    colRigidbody.AddForce(direction.normalized * playerKnockback);
+                }
+            other.GetComponent<Health>().takeDamage(playerDamage);
             // -------------------------
             // Knockback & Damage is Work in Progress
             // -------------------------
+        }
+        if(other.CompareTag("Explosion") && isAttacking)
+        {
+            col.gameObject.GetComponent<ExplosiveBarrel>().Explode();
         }
     }
 
@@ -53,6 +64,8 @@ public class PlayerAttack : MonoBehaviour
     {
         canAttack = false;
         isAttacking = true;
+
+        
         
         yield return new WaitForSeconds(attackTime);
 
