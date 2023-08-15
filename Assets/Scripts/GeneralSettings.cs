@@ -35,7 +35,8 @@ public class GeneralSettings : MonoBehaviour
             fpsDisplay.SetActive(true);
             deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
 		    float fps = 1.0f / deltaTime;
-		    fpsText.text = Mathf.Ceil (fps).ToString ();
+            string tmp_text =  Mathf.Ceil (fps).ToString ();
+		    fpsText.text = "FPS: " + tmp_text;
         }
         else if(btt.pressed == false)
         {

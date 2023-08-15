@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject healtBar;
     [SerializeField] GameObject settingPanel;
+    [SerializeField] ButtonToToggle btt;
 
 
     // Start is called before the first frame update
@@ -48,12 +49,13 @@ public class PauseMenu : MonoBehaviour
     }
     public void OpenSettings()
     {
+        btt.LoadButtonState();
         pausePanel.SetActive(false);
         settingPanel.SetActive(true);
     }
     public void QuitSettings()
     {
-        pausePanel.SetActive(false);
+        pausePanel.SetActive(true);
         settingPanel.SetActive(false);
     }
     public void QuitToMenu()

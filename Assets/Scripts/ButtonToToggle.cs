@@ -6,25 +6,51 @@ using UnityEngine.UI;
 public class ButtonToToggle : MonoBehaviour
 {
     public Animator buttonAnimator;
-    public bool pressed = false;
-    [SerializeField] Button button;
+    public bool pressed;
+
+    public void Start()
+    {
+        // Load the stored state from PlayerPrefs
+        pressed = PlayerPrefs.GetInt("ButtonState", 0) == 1;
+        Debug.Log("Loaded Button State: " + (pressed ? "Pressed" : "Normal"));
+
+        
+        // Set the initial state
+        if (pressed)
+            buttonAnimator.SetTrigger("Pressed");
+        else
+            buttonAnimator.SetTrigger("Normal");
+    }
 
     public void OnButtonClick()
     {
-        // Trigger the "Pressed" animation state
-        if(pressed == false)
-        {
-            buttonAnimator.SetTrigger("Pressed");
-            pressed = true;
-        }
-        else
+        if (pressed)
         {
             buttonAnimator.SetTrigger("Normal");
             pressed = false;
         }
-        
-        
-        // Perform any other actions you want when the button is clicked
-        Debug.Log("Button Clicked!");
+        else
+        {
+            buttonAnimator.SetTrigger("Pressed");
+            pressed = true;
+        }
+
+        // Store the current state in PlayerPrefs
+        PlayerPrefs.SetInt("ButtonState", pressed ? 1 : 0);
+    }
+    public void LoadButtonState()
+    {
+        // Load the stored state from PlayerPrefs
+        pressed = PlayerPrefs.GetInt("ButtonState", 0) == 1;
+
+        // Set the initial state
+        if (pressed)
+        {
+            buttonAnimator.SetTrigger("Pressed");
+        }
+        else
+        {
+            buttonAnimator.SetTrigger("Normal");
+        }
     }
 }
