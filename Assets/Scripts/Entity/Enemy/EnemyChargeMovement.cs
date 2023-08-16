@@ -6,13 +6,18 @@ public class EnemyChargeMovement : MonoBehaviour
 {
     [SerializeField] float speed  = 80f; 
     
-    Rigidbody2D enemy_rb;
+    Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
 
-    public float minDistance = 10f;
+    [SerializeField] float damage = 30;
+    [SerializeField] float knockback = 5;
+
+    public float minDistance = 5f;
 
     private bool isCharging = false;
+    private bool canCharge = true;
+    private bool hitSomething = false;
     [SerializeField] private float chargeSpeed = 160f;
     [SerializeField] private float maxChargeRange = 40f;
 
@@ -20,12 +25,14 @@ public class EnemyChargeMovement : MonoBehaviour
     [SerializeField] AudioClip steps;
     [SerializeField] AudioSource source;
 
+    [SerializeField] TrailRenderer tr;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
-        enemy_rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
     // Start is called before the first frame update
     void Start()
@@ -47,7 +54,7 @@ public class EnemyChargeMovement : MonoBehaviour
         {
             float distanceToPlayer = Vector3.Distance(transform.position, target.position);
             if(distanceToPlayer > minDistance)
-                enemy_rb.velocity = speed * Time.deltaTime * new Vector2(moveDirection.x, moveDirection.y);
+                rb.velocity = speed * Time.deltaTime * moveDirection;
             else
                 StartCoroutine(Charge());
         }
@@ -55,49 +62,72 @@ public class EnemyChargeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isCharging)
-        {
-            return;
-        }
+        //if(isCharging)
+        //{
+        //    return;
+        //}
 
         if (target)
         {
             Vector3 direction = (target.position - transform.position).normalized;
             float angle  = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            enemy_rb.rotation = angle;
+            rb.rotation = angle - 90 ;
             moveDirection = direction;
         }
     }
 
     private IEnumerator Charge()
     {
+        canCharge = false;
         isCharging = true;
-        enemy_rb.velocity = Vector2.zero;
-        Vector2 startPosition = enemy_rb.position;
-        Vector3 chargeDirection = moveDirection;
+        tr.emitting = true;
+        rb.velocity = Vector2.zero;
+        Vector2 startPosition = rb.position;
+        Vector2 chargeDirection = moveDirection;
         source.clip = alerted;
         source.Play();
         
         yield return new WaitForSeconds(1f);
 
-        enemy_rb.velocity = chargeSpeed * Time.deltaTime * new Vector2(chargeDirection.x, chargeDirection.y);
+        rb.velocity = chargeSpeed * Time.deltaTime * chargeDirection;
 
-        while((enemy_rb.position - startPosition).magnitude < maxChargeRange)
+        while((rb.position - startPosition).magnitude < maxChargeRange && !hitSomething)
         {
             source.clip = steps;
             source.Play();
             yield return new WaitForSeconds(0.25f);
         }
+        isCharging = false;
+        tr.emitting = false;
+        yield return new WaitForSeconds(2f);
+        canCharge = true;
+        hitSomething = false;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if(collision.gameObject.name == "Player")
+        GameObject other = col.gameObject;
+        if(other.CompareTag("Player")) // && col.Equals(other.GetComponent<CircleCollider2D>()))
         {
-            //collision.gameObject.GetComponent<Health>().takeDamage(damage);
+            Debug.Log("Player hit");
+            other.GetComponent<Health>().takeDamage(damage);
+            other.GetComponent<Rigidbody2D>().AddForce((other.transform.position - transform.position).normalized * knockback);
+            hitSomething = true;
             
         }
-
+        else if(other.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy hit");
+            other.GetComponent<Health>().takeDamage(damage);
+            other.GetComponent<Rigidbody2D>().AddForce((other.transform.position - transform.position).normalized * knockback);
+            hitSomething = true;
+            
+        }
+        else if (other.CompareTag("Explosion"))
+        {
+            other.GetComponent<ExplosiveBarrel>().Explode();
+            hitSomething = true;
+        }
         
     }
 }
