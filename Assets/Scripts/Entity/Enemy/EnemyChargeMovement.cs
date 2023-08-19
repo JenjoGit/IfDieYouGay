@@ -55,7 +55,7 @@ public class EnemyChargeMovement : MonoBehaviour
             float distanceToPlayer = Vector3.Distance(transform.position, target.position);
             if(distanceToPlayer > minDistance)
                 rb.velocity = speed * Time.deltaTime * moveDirection;
-            else
+            else if (canCharge)
                 StartCoroutine(Charge());
         }
     }
@@ -97,6 +97,9 @@ public class EnemyChargeMovement : MonoBehaviour
             source.Play();
             yield return new WaitForSeconds(0.25f);
         }
+
+        rb.velocity = Vector2.zero;
+
         isCharging = false;
         tr.emitting = false;
         yield return new WaitForSeconds(2f);

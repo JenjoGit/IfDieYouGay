@@ -9,8 +9,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    int currentMenu;
-
     [SerializeField] GameObject titleScreen;
     [SerializeField] GameObject optionsScreen;
     [SerializeField] GameObject creditsScreen;
@@ -24,9 +22,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //left = titleScreen.;
-
-        currentMenu = 0;
+        
     }
 
     // Update is called once per frame
