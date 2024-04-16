@@ -1,60 +1,35 @@
 {
   "main": {
-    "id": "47d61d82da768f52",
+    "id": "4bb6f76039e285b4",
     "type": "split",
     "children": [
       {
-        "id": "e01fef0984a6369b",
+        "id": "2c758e4226021b6e",
         "type": "tabs",
         "children": [
           {
-            "id": "0e8b04a54102ecd0",
+            "id": "41b7e9d8b8378fcc",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {}
             }
-          },
-          {
-            "id": "1849f6a180749ca4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Welcome.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e79a7b10ff6feb94",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Struktur/Enemies/Movement für alle.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "6d64e8470c9d0820",
+    "id": "a7426eec65cc3564",
     "type": "split",
     "children": [
       {
-        "id": "004b6129cc43879b",
+        "id": "fd9270ee11e1e14e",
         "type": "tabs",
         "children": [
           {
-            "id": "4c1c1458ab8ee463",
+            "id": "27fe49a35b85d481",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -64,7 +39,7 @@
             }
           },
           {
-            "id": "fac4bd3448f9958f",
+            "id": "9ff25a32a927f9c0",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -79,7 +54,7 @@
             }
           },
           {
-            "id": "b95d0fbb27c472b6",
+            "id": "80178c4524cfbb4d",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -93,20 +68,19 @@
     "width": 300
   },
   "right": {
-    "id": "5ae16cfc523856a0",
+    "id": "c65bcb5d124d8527",
     "type": "split",
     "children": [
       {
-        "id": "2648d7183d58ece3",
+        "id": "d10a3e77aa86b1d6",
         "type": "tabs",
         "children": [
           {
-            "id": "4e1d153c51c4616e",
+            "id": "8764a7b751b09030",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Struktur/Enemies/Movement für alle.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,19 +92,18 @@
             }
           },
           {
-            "id": "9408b7fc1dffa8ad",
+            "id": "2cd193b05eb0a38c",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Struktur/Enemies/Movement für alle.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "92bc9af9a7cf7bd5",
+            "id": "c08ebb3f3447fcaf",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -141,13 +114,11 @@
             }
           },
           {
-            "id": "3b6949486ecd4286",
+            "id": "46878495a3fcd226",
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Struktur/Enemies/Movement für alle.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -167,18 +138,6 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e79a7b10ff6feb94",
-  "lastOpenFiles": [
-    "Struktur/Enemies/Range.md",
-    "Struktur/Enemies/Allgemein.md",
-    "Struktur/Enemies/Meele.md",
-    "Struktur/Player.md",
-    "TODO.md",
-    "Struktur/Enemies/Movement für alle.md",
-    "Struktur/Enemies/Charge.md",
-    "Struktur/Enemies",
-    "Untitled/Untitled.md",
-    "Struktur",
-    "Welcome.md"
-  ]
+  "active": "41b7e9d8b8378fcc",
+  "lastOpenFiles": []
 }
