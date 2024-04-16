@@ -177,7 +177,7 @@ MonoBehaviour:
   bulletPos: {fileID: 3910972479021256169}
   damage: 5
   attackSpeed: 2
-  bulletSpeed: 2.5
+  bulletSpeed: 7
   timer: 2
 --- !u!114 &7600878632182509385
 MonoBehaviour:
